@@ -73,6 +73,24 @@ const HeroOption = styled.div`
   }
 `;
 
+const HeroOptionSelected = styled.div`
+  background: #fe8a02;
+  background-image: ${props => `url(${heroOption[props.hero]})`};
+  width: 30px;
+  height: 44px;
+  margin-right: 3.2px;
+  background-size: cover;
+  transform: translateZ(0) scale(1.6) skewX(-15deg) translate(-3px, 10px);
+  transform-origin: bottom left;
+  box-shadow: 0px 0px 8px 5px #fe8a02;
+  border-style: solid;
+  border: 3px solid #fff;
+  border-bottom: solid 10px #fff;
+  border-radius: 3px;
+  transition-duration: 25ms;
+  z-index: 3;
+`;
+
 const Heroes = styled.div`
   grid-area: heroes;
   display: grid;
@@ -90,12 +108,19 @@ const HeroOptions = ({ selectedHero, onSelectHero, heroes }) =>
   <Heroes>
     {heroes.map((heroCategory, i) =>
       <Category key={i}>
-        {heroCategory.map(hero =>
-          <HeroOption
-            key={hero}
-            onClick={() => onSelectHero(hero)}
-            hero={hero}
-          />
+        {heroCategory.map(
+          hero =>
+            selectedHero === hero
+              ? <HeroOptionSelected
+                  key={hero}
+                  onClick={() => onSelectHero(hero)}
+                  hero={hero}
+                />
+              : <HeroOption
+                  key={hero}
+                  onClick={() => onSelectHero(hero)}
+                  hero={hero}
+                />
         )}
       </Category>
     )}

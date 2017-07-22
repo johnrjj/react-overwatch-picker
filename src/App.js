@@ -37,9 +37,45 @@ class App extends Component {
     gameType: 'Attack',
     mapName: `King's Row`,
     selectedHero: 'bastion',
+    highlightedHero: 'bastion',
   };
+
+  handleKeyDown(keyCode) {
+    if (keyCode.key === 'Enter') {
+      this.setState({ selectedHero: this.state.highlightedHero });
+      return;
+    }
+
+    if (keyCode.key === 'ArrowLeft' || keyCode.key === 'ArrowRight') {
+      const heroesInOrder = heroes.reduce((accum, category) => [
+        ...accum,
+        ...category,
+      ]);
+      const curHeroIndex = heroesInOrder.findIndex(
+        c => c === this.state.highlightedHero
+      );
+      const index =
+        keyCode.key === 'ArrowRight'
+          ? (curHeroIndex + 1) % heroesInOrder.length
+          : curHeroIndex === 0
+            ? heroesInOrder.length - 1
+            : (curHeroIndex - 1) % heroesInOrder.length;
+
+      const nextHero = heroesInOrder[index];
+      this.setState({ highlightedHero: nextHero });
+    }
+  }
+
+  componentWillMount() {
+    document.addEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+
   render() {
-    const { gameType, mapName, selectedHero } = this.state;
+    const { gameType, mapName, selectedHero, highlightedHero } = this.state;
 
     return (
       <AppContainer>
@@ -49,7 +85,7 @@ class App extends Component {
           selectedHero={selectedHero}
         />
         <PlayerSelections>
-          <UserSelectedHeroInfo hero="bastion" username="thehazzard" />
+          <UserSelectedHeroInfo hero={selectedHero} username="thehazzard" />
           <UserSelectedHeroInfo hero="orisa" username="arya" />
           <UserSelectedHeroInfo hero="dva" username="swagmaster" />
           <UserSelectedHeroInfo hero="winston" username="flex42" />
@@ -57,11 +93,15 @@ class App extends Component {
           <UserSelectedHeroInfo hero="lucio" username="din" />
         </PlayerSelections>
         <HeroOptions
-          selectedHero={selectedHero}
-          onSelectHero={ev => console.log(ev, 'selected hero')}
+          selectedHero={highlightedHero}
+          onSelectHero={hero => this.setState({ highlightedHero: hero })}
           heroes={heroes}
         />
-        <PrimaryButton>Select</PrimaryButton>
+        <PrimaryButton
+          onClick={() => this.setState({ selectedHero: highlightedHero })}
+        >
+          Select
+        </PrimaryButton>
       </AppContainer>
     );
   }
