@@ -61,13 +61,13 @@ const HeroOption = styled.div`
   height: 44px;
   margin-right: 3.2px;
   background-size: cover;
-  transform: skewX(-15deg);
+  transform: translate3D(0px, 0px, 0px) skewX(-15deg);
   transform-origin: bottom left;
   box-shadow: inset 0px 2px 0px 0px #fff, inset 0px -1px 0px 0px #fff;
   border-radius: 3px;
   transition-duration: 25ms;
   :hover {
-    transform: scale(1.15) skewX(-15deg) translate(-2px, 2px);
+    transform: translateZ(0) scale(1.15) skewX(-15deg) translate(-2px, 2px);
     box-shadow: 0 0 0 3px #fff;
     z-index: 2;
   }
