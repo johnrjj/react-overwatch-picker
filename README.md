@@ -1,15 +1,26 @@
 # React Overwatch Hero Picker
 
-Demo here: 
+[Demo here](http://react-overwatch-picker.surge.sh/)
 
-Overwatch hero picker screen done in React/HTML/CSS. 
+Overwatch hero picker screen done in React/HTML/CSS. Just for fun, not perfect. feel free to PR.
 
+Please check out the original tutorial in pure HTML/CSS by Dave Geddes [here](http://gedd.ski/build/overwatch-hero-picker/) 
 
+### To install
+```
+git clone https://github.com/johnrjj/react-overwatch-picker.git
+yarn install
+yarn start
+```
 
 ### Available commands
-  - [npm start](#npm-start)
-  - [npm test](#npm-test)
-  - [npm run build](#npm-run-build)
-  - [npm run eject](#npm-run-eject)
+  `yarn start`
+  
+  `yarn test`
+  
+  `yarn run prettier`
+  
+  `yarn run build`
+  
+  `yarn run deploy`
 
-Please check out the original tutorial in pure HTML/CSS by Dave Geddes here: http://gedd.ski/build/overwatch-hero-picker/. 
