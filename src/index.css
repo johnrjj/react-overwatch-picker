@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Overwatch;
+  src: url("assets/fonts/BigNoodleToo.ttf");
+}
