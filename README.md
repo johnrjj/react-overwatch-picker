@@ -24,3 +24,7 @@ yarn start
   
   `yarn run deploy`
 
+
+### To do
+- Event handlers to change heroes
+- Compress images
